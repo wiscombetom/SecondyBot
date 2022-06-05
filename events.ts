@@ -9,5 +9,5 @@ export
 
 export
 	const onReady = (client: DiscordJS.Client) => {
-		console.log(`Connected as ${client.user?.tag}`);
+		console.log(`Connected as ${client.user?.tag}`)
 	}
