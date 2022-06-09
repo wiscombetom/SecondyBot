@@ -1,7 +1,7 @@
 import { BotClient } from "./client"
 import WOKCommands from "wokcommands"
 import path from "path"
-import testSchema from "./test-schema"
+// import testSchema from "./test-schema"
 // import mongoose from "mongoose"
 
 import env from "./env.json"
@@ -14,6 +14,7 @@ client.on("ready", async () => {
 	console.log(`Connected as ${client.user?.tag}`)
 	new WOKCommands(client, {
 		commandsDir: path.join(__dirname, "commands"),
+		featuresDir: path.join(__dirname, "features"),
 		typeScript: true,
 		ignoreBots: true,
 		ephemeral: true,
@@ -29,4 +30,7 @@ client.on("ready", async () => {
 	// 	}).save()
 	// }, 1000)
 })
+
+// console.log(client.botData)
+
 client.login(env.TOKEN)

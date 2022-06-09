@@ -1,10 +1,10 @@
-import mongoose, { Schema } from "mongoose"
+// import mongoose, { Schema } from "mongoose"
 
-const schema = new Schema({
-	message: {
-		type: String,
-		required: true,
-	},
-})
+// const schema = new Schema({
+// 	message: {
+// 		type: String,
+// 		required: true,
+// 	},
+// })
 
-export default mongoose.model("testing", schema, "testing")
+// export default mongoose.model("testing", schema, "testing")

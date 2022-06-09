@@ -1,12 +1,9 @@
 import DiscordJS, { Intents } from "discord.js"
-// import "dotenv/config"
-import { onMessageCreate, onInteractionCreate } from "./events"
-import { createCommands } from "./commands"
-
-// var env = require("./env.json")
-import env from "./env.json"
+import botData from "./bot-data.json"
+import fs from "fs"
 
 export class BotClient extends DiscordJS.Client {
+	botData: object;
 	constructor() {
 		super({
 			intents: [
@@ -16,28 +13,21 @@ export class BotClient extends DiscordJS.Client {
 				Intents.FLAGS.GUILD_PRESENCES,
 			]
 		})
+		this.botData = botData
 	}
-
-	start = () => {
-		this.createEvents()
-		this.login(env.TOKEN)
-	}
-	
-	createEvents = () => {
-		this.on("messageCreate", onMessageCreate)
-		this.on("interactionCreate", onInteractionCreate)
-	}
-	
-	createCommands = () => {
-		let guildId = env.GUILD_ID
-		const guild = this.guilds.cache.get(guildId)
-		let commands
-		if (guild) {
-			commands = guild.commands
-		} else {
-			commands = this.application?.commands
+	getBotData = async () => {
+		if (!this.botData) {
+			fs.readFile("./bot-data.json", (err, data) => {
+				if (err) {
+					this.botData = {}
+				} else {
+					this.botData = data
+				}
+			})
 		}
-		
-		createCommands(commands)
+		return this.botData
+	}
+	setBotData = async (newData: object) => {
+		this.botData = newData
 	}
 }
