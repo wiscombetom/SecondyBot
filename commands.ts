@@ -43,9 +43,7 @@ export
 			await interaction.deferReply({
 				ephemeral: true,
 			})
-			await new Promise((resolve) => {
-				setTimeout(resolve, 5000)
-			})
+			await new Promise(resolve => setTimeout(resolve, 5000))
 			await interaction.editReply({
 				content: "Replied after 5 seconds!",
 			})
