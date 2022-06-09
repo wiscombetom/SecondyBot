@@ -1,4 +1,4 @@
-import { Constants } from "discord.js"
+import { Constants, GuildMember } from "discord.js"
 import { ICommand } from "wokcommands"
 
 const simJoin = {
@@ -20,7 +20,17 @@ const simJoin = {
 		},
 	],
 
-	callback: async ({ member, client }) => {
+	callback: async ({ message, interaction, client }) => {
+		let member
+		if (!message) {
+			member = interaction.options.getMember("user") as GuildMember
+		} else {
+			member = message.mentions.members?.first()
+		}
+		if (!member) {
+			return "Invalid member."
+		}
+
 		client.emit("guildMemberAdd", member)
 		return "Join simulated! Testing welcome message."
 	},
