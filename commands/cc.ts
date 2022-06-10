@@ -40,7 +40,10 @@ const clearChat = {
 		if (!interaction) {
 			channel.send(reply)
 		} else {
-			return reply
+			interaction.reply({
+				content: reply,
+				ephemeral: true,
+			})
 		}
 	},
 } as ICommand
