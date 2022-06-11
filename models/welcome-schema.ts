@@ -1,19 +1,5 @@
 import mongoose, { Schema } from "mongoose"
 
-interface WelcomeMessage {
-	guildId: string;
-	channelId: string;
-	text: string;
-}
-
-const makeWelcomeMessage = (guildId: string, channelId: string, text: string) => {
-	return {
-		guildId,
-		channelId,
-		text
-	} as WelcomeMessage
-}
-
 const name = "welcome"
 
 const reqString = {
@@ -28,6 +14,3 @@ const welcomeSchema = new Schema({
 })
 
 export default mongoose.model(name, welcomeSchema, name)
-export {
-	makeWelcomeMessage
-}

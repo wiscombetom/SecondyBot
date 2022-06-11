@@ -1,16 +1,11 @@
 import { BotClient } from "./client"
 import WOKCommands from "wokcommands"
 import path from "path"
-// import testSchema from "./test-schema"
-// import mongoose from "mongoose"
 
 import env from "./env.json"
 
 const client: BotClient = new BotClient()
 client.on("ready", async () => {
-	// await mongoose.connect(env.MONGO_URI, {
-	// 	keepAlive: true,
-	// })
 	console.log(`Connected as ${client.user?.tag}`)
 	new WOKCommands(client, {
 		commandsDir: path.join(__dirname, "commands"),
@@ -24,13 +19,6 @@ client.on("ready", async () => {
 		dbOptions: [],
 		delErrMsgCooldown: 5,
 	})
-	// setTimeout(async () => {
-	// 	await new testSchema({
-	// 		message: "Hello World"
-	// 	}).save()
-	// }, 1000)
 })
-
-// console.log(client.botData)
 
 client.login(env.TOKEN)
