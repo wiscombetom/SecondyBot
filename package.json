@@ -17,6 +17,7 @@
     "discord.js-docs": "^0.3.0",
     "dotenv": "^16.0.1",
     "mongoose": "^6.3.6",
+    "tesseract.js": "^2.1.5",
     "wokcommands": "^1.5.3"
   }
 }
